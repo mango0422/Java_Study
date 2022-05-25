@@ -1,3 +1,4 @@
+package ch02;
 public class VariableExchangeExample {
     public static void main(String[] args){
         int x = 3;

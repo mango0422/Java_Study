@@ -1,3 +1,4 @@
+package ch02;
 public class CharExample {
     public static void main(String[] args){
         char c1 = 'A';
