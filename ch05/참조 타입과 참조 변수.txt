@@ -1,0 +1,44 @@
+데이터 타입(data type)
+ 1. 기본 타입(primitive type)
+  1) 정수 타입 : byte / char / short / int / long
+  2) 실수 타입 : float / double
+  3) 논리 타입 : boolean
+ 2. 참조 타입(reference type)
+  1) 배열타입
+  2) 열거 타입
+  3) 클래스
+  4) 인터페이스
+
+메소드 영역(Method Area)
+ - JVM이 시작할 때 생성되고 모든 스레드가 공유하는 영역.
+ - 메소드 영역에는 코드에서 사용되는 클래스들을 클래스 로더로 읽어 클래스별로 정적 필드와 상수, 메소드 코드, 생성자 코드 등을 분류해서 저장한다.
+
+힙 영역(Heap Area)
+ - 객체와 배열이 생성되는 영역.
+ - 여기 생성된 객체, 배열은 JVM 스택 영역의 변수나 다른 객체의 필드에서 참조한다.
+ - 만일 참조하는 변수, 필드가 없다면 의미없는 객체가 되기 때문에 JVM이 이것을 쓰레기로 취급하고 쓰레기 수집기를 실행시켜 자동으로 제거한다.
+ - 따라서 개발자는 객체를 제거하기 위해 별도의 코드를 작성할 필요가 없다. (자바는 코드로 객체를 직접 제거하는 방법을 제공하지 않는다.)
+
+JVM 스택 영역
+ - JVM 스택은 메소드를 호출할 때마다 프레임을 추가하고 메소드가 종료되면 해당 프레임을 제거(pop)하는 동작을 수행한다.
+ - 프레임 내부에는 로컬 변수 스택이 있는데, 기본 타입 변수와 참조 타입 변수가 추가(push)되거나 제거(pop)된다.
+ - 스택 영역에는 변수가 생성되는 시점은 초기화가 될 때, 즉 최초로 변수에 값이 저장될 때이다.
+
+ 참조 변수가 null을 가지고 있을 경우에는, 참조 객체가 없으므로 변수를 통해 객체를 사용할 수 없다.
+ 만약 null 상태에서 있지도 않은 객체의 데이터(필드)나 메소드를 사용하는 코드를 실행하면 NullPointerException이 발생한다.
+
+ int[] intArray = null;
+ intArray[0] = 10; <------ NullPointerException
+ 
+ 위 코드에서 intArray는 배열 변수이므로 참조 변수다.
+ 그래서 null로 초기화가 가능하다.
+ 이 상태에서 intArray[0]에 10을 저장하려고 하면 NullPointerException이 발생한다.
+ intArray변수가 참조하는 배열 객체가 없기 때문이다.
+
+ String str = null;
+ System.out.println("총 문자수 : " + str.length()); <------- NullPointerException
+ 
+ String은 클래스이므로 참조 타입이므로, str 변수도 null로 초기화할 수 있다.
+ 이 상태에서 String 객체의 length()라는 메소드를 호출하면 NullPointerException이 발생한다.
+ 이유는 str 변수가 참조하는 String 객체가 없기 때문이다.
+ NullPointerException이 발생했을 때 해결 방법은 참조 변수를 추적해서 객체를 참조하도록 수정하는 것이다.
