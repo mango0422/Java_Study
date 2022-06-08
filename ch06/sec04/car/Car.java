@@ -1,4 +1,4 @@
-package ch06;
+package ch06.sec04.car;
 
 public class Car {
     //필드

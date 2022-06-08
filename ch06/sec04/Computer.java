@@ -1,4 +1,4 @@
-package ch06;
+package ch06.sec04;
 
 public class Computer {
     int sum1(int[] values){

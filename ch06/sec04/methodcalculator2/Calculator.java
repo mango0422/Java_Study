@@ -1,4 +1,4 @@
-package ch06.methodcalculator2;
+package ch06.sec04.methodcalculator2;
 
 public class Calculator {
     int plus(int x, int y){

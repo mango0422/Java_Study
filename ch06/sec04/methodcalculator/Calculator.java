@@ -1,4 +1,4 @@
-package ch06.methodcalculator;
+package ch06.sec04.methodcalculator;
 
 public class Calculator {
     //메소드

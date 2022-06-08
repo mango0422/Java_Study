@@ -1,4 +1,4 @@
-package ch06.methodcalculator2;
+package ch06.sec04.methodcalculator2;
 
 public class CalculatorExample {
     public static void main(String[] args){
