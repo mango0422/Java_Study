@@ -1,4 +1,4 @@
-package ch06.exam02;
+package ch06.sec03.exam01;
 
 public class CarExample {
     public static void main(String[] args){

@@ -1,4 +1,4 @@
-package ch06.exam02;
+package ch06.sec03.exam01;
 
 public class Car {
     Car(String color, int cc){

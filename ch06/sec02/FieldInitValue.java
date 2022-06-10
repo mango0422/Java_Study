@@ -1,4 +1,4 @@
-package ch06;
+package ch06.sec02;
 
 public class FieldInitValue {
     //필드

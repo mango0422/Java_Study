@@ -1,4 +1,4 @@
-package ch06;
+package ch06.sec01;
 
 public class Student {
     

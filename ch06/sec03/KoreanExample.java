@@ -8,7 +8,7 @@
  - 객체 생성 시점에서 외부에서 제공되는 다양한 값들로 초기화되어야 한다면 생성자에서 초기화 해야한다.
 */
 
-package ch06;
+package ch06.sec03;
 
 public class KoreanExample {
     public static void main(String[] args){
