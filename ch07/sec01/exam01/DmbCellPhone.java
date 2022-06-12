@@ -1,4 +1,4 @@
-package ch07.sec01.exma01;
+package ch07.sec01.exam01;
 
 public class DmbCellPhone extends CellPhone{
     //필드
