@@ -47,3 +47,9 @@ Tire 클래스
     }
  }
  
+ drive() 메소드를 정상적으로 호출한다면 다음과 같을 것이다.
+ Driver driver = new Driver();
+ Vehicle vehicle = new Vehicle();
+ driver.drive(vehicle);
+
+ 만약 Vehicle의 자식 클래스인 Bus 객체를 drive() 메소드의 매개값으로 넘겨준다면 어떻게 될까
