@@ -25,3 +25,10 @@ public class InstanceofExample {
         method2(parentB);   // 예외 발생
     }
 }
+
+/*
+ * InstanceofExample 클래스에서 method1()과 method2()를 호출할 경우, Child 객체를 매개값으로 전달하면 두 메소드 모두 예외가 발생하지 않지만, Parent 객체를 매개값으로 전달하면 method2()에서는 ClassCastException이 발생한다ㅣ.
+ * method1()은 instanceof 연산자로 변환이 가능한지 확인한 후 변환을 하지만, method2()는 무조건 변환하려고 했기 대문입니다.
+ * 
+ * 예외가 발생하면 프로그램은 즉시 종료되기 때문에 method1()과 같이 강제 타입 변환을 하기 전에 instanceof 연산자로 변환시킬 타입의 객체인지 조사해서 잘못된 매개값으로 인해 프로그램이 종료되는 것을 막아야 한다.
+ */
