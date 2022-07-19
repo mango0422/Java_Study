@@ -65,3 +65,75 @@ ________________________________________________________________________________
  다음은 Television과 Audio라는 이름을 가지고 있는 RemoteControl의 구현 클래스를 작성하는 방법을 보여준다.
  클래스 선언부 끝에 implements RemoteControl이 붙어 있기 때문에 이 두 클래스는 RemoteControl 인터페이스로 사용 가능하다.
  RemoteControl에는 3개의 추상 메소드가 있기 때문에 Television과 Audio는 RemoteControl의 추상 메소드들에 대한 실체 메소드를 가지고 있어야 한다.
+ ______________________________________________________________________________________________________________________________________________________________________________________
+
+ * 다중 인터페이스 구현 클래스
+ 인터페이스 A와 인터페이스 B가 객체의 메소드를 호출할 수 있으려면 객체는 이 두 인터페이스를 모두 구현해야 한다.
+ 따라서 구현 클래스는 다음과 같이 작성되어야 한다.
+ 
+ public class 구현클래스이름 implements 인터페이스A, 인터페이스B{
+    //인터페이스 A에 선언된 추상 메소드의 실체 메소드 선언
+    //인터페이스 B에 선언된 추상 메소드의 실체 메소드 선언
+ }
+ 
+ 다중 인터페이스를 구현할 경우, 구현 클래스는 모든 인터페이스의 추상 메소드에 대해 실체 메소드를 작성해야 한다.
+______________________________________________________________________________________________________________________________________________________________________________________
+
+<인터페이스 사용>
+구현 객체가 인터페이스 변수에 대입된다는 것을 알았으니, 지금부터 인터페이스로 구현 객체를 사용하는 방법을 알아보자.
+클래스를 선언할 때 인터페이스는 필드, 생성자 또는 메소드의 매개 변수, 생성자 또는 메소드의 로컬 변수로 선언될 수 있다.
+예를 들어 다음은 RemoteControl 인터페이스를 필드, 생성자 또는 메소드의 매개 변수 그리고 메소드의 로컬 변수로 선언했다.
+
+public class Myclass{
+  //필드
+  RemoteControl rc = new Television(); // 인터페이스가 필드 타입으로 사용될 경우, 필드에 구현 객체를 대입할 수 있다.
+
+  //생성자
+  MyClass(RemoteControl rc){ // 인터페이스가 생성자의 매개 변수 타입으로 사용될 경우, new 연산자로 객체를 생성할 때 구현 객체를 생성자의 매개값으로 대입할 수 있다.
+    this.rc = rc;
+  }
+
+  //메소드
+  void methodA(){
+    //로컬 변수
+    RemoteControl rc = new Audio(); // 인터페이스가 로컬 변수 타입으로 사용될 경우, 변수에 구현 객체를 대입할 수 있다.
+  }
+
+  void methodB(RemoteControl rc){...} // 생성자의 매개값으로 구현 객체 대입 : RemoteControl rc 부분에 mc.methodB(new Audio());
+  // 인터페이스가 메소드의 매개 변수 타입으로 사용될 경우, 메소드 호출 시 구현 객체를 매개값으로 대입할 수 있다.
+}
+
+구현 객체가 인터페이스 타입에 대입되면 인터페이스에 선언된 추상 메소드를 개발 코드에서 사용할 수 있게 된다.
+
+1. 필드로 선언된 rc는 다음과 같이 사용될 수 있다.
+MyClass myClass = new MyClass();
+myClass.rc.turnOn();      //Television의 turnOn()이 실행
+myClass.rc.setVolume(5);  //Television의 setVolume(5)가 실행
+
+2. 생성자의 매개 변수 타입으로 선언된 rc는 다음과 같이 사용될 수 있다.
+MyClass(RemoteControl rc){
+  this.rc = rc;
+  rc.turnOn();
+  rc.setVolume(5);
+}
+만약 다음과 같이 MyClass 객체가 생성되었을 경우에는 Audio의 turnOn()과 setVolume() 메소드가 실행된다.
+MyClass myClass = new MyClass(new Audio());
+
+3. 로컬 변수로 선언된 rc는 다음과 같이 사용될 수 있다.
+void methodA(){
+  RemoteControl rc = new Audio();
+  rc.turnOn();
+  rc.setVolume(5);
+}
+
+4. 메소드의 매개 변수 타입으로 선언된 rc는 다음과 같이 사용될 수 있다.
+void methodB(RemoteControl rc){
+  rc.turnOn();
+  rc.setVolume(5);
+}
+만약 다음과 같이 methodB() 메소드가 호출되었을 경우에는 Television의 turnOn()과 setVolume() 메소드가 실행된다.
+MyClass myClass = new MyClass();
+myClass.methodB(new Television());
+
+인터페이스(RemoteControl)는 개발 코드(MyClass)와 구현 객체(Television, Audio) 사이에서 접점 역할을 담당한다.
+개발 코드는 인터페이스에 선언된 추상 메소드(turnOn())를 호출하고 인터페이스는 구현 객체의 재정의 메소드(turnOn())를 호출한다.
