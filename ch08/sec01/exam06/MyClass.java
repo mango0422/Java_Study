@@ -19,7 +19,7 @@ public class MyClass{
         rc.turnOn();
         rc.setVolume(5);
     }
-    void methodB(){
+    void methodB(RemoteControl rc){
         rc.turnOn();
         rc.setVolume(5);
     }
