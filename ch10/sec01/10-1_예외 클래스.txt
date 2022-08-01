@@ -105,3 +105,36 @@ Audio audio = (Audio) rc;
 
 ClassCastException을 발생시키지 않으려면 타입 변환 전에 변환이 가능한지 instanceof 연산자로 확인하는 것이 좋다.
 instanceof 연산의 결과가 true이면 좌항 객체를 우항 타입으로 변환이 가능하다는 뜻이다.
+
+Animal animal = new Dog();
+if(animal instanceof Dog){
+        Dog dog = (Dog) animal;
+} else if(animal instanceof Cat){
+        Cat cat = (Cat) animal;
+}
+
+Remocon rc = new Audio();
+if(rc instanceof Television){
+        Television tv = (Television) rc;
+} else if(rc instanceof Audio){
+        Audio audio = (Audio) rc;
+}
+
+(ClassCastExceptionExample.java / package ch10.sec01.exam05; )
+
+예제를 실행하면 14라인에서 ClassCastException이 발생한다.
+그 이유는 9라인에서 Cat 객체를 매개값으로 주어서 Dog 타입으로 변환할 수 없기 때문이다.
+
+Exception in thread "main" java.lang.ClassCastException: class ch10.sec01.exam05.Cat cannot be cast to class ch10.sec01.exam05.Dog (ch10.sec01.exam05.Cat and ch10.sec01.exam05.Dog are in unnamed module of loader 'app')
+        at ch10.sec01.exam05.ClassCastExceptionExample.changeDog(ClassCastExceptionExample.java:14)
+        at ch10.sec01.exam05.ClassCastExceptionExample.main(ClassCastExceptionExample.java:9)
+
+이렇게 잘못된 매개값이 들어올 수 있기 때문에 changeDog() 메소드에서 13라인과 15라인의 주석을 풀어 타입 체크를 먼저 하는 것이 좋다.
+______________________________________________________________________________________________________________________________________________________________________________________
+
+확인문제
+예외에 대한 설명
+1. 예외는 사용자의 잘못된 조작, 개발자의 잘못된 코딩으로 인한 프로그램 오류를 말한다.
+2. RuntimeException의 하위 클래스는 컴파일러가 예외 처리 코드를 체크하지 않는다.
+3. 예외는 클래스로 관리된다.
+4. Exception의 하위 클래스는 모두 일반 예외에 해당된다.
