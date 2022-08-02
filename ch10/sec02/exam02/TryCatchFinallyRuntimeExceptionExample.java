@@ -1,4 +1,4 @@
-package ch10.sec02.exma02;
+package ch10.sec02.exam02;
 
 public class TryCatchFinallyRuntimeExceptionExample {
     public static void main(String[] args){
