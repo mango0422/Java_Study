@@ -1,0 +1,160 @@
+java.lang 패키지는 자바 프로그램의 기본적인 클래스를 담고 있는 패키지이다.
+그래서 java.lang 패키지이 있는 클래스와 인터페이스는 import 없이 사용할 수 있다.
+지금까지 사용한 String과 System 클래스도 java.lang 패키지에 포함되어 있기 때문에 import 하지 않고 사용했다.
+이번 절에서는 java.lang 패키지에 속하는 주요 클래스에 대해 살펴보자.
+
+java.lang 패키지에 속하는 주요 클래스와 간략한 용도를 먼저 살펴보면 다음과 같다.
+
+클래스 - 용도
+Object - 자바 클래스의 최상위 클래스로 사용
+System - 표준 입력 장치(키보드)로부터 데이터를 입력받을 때 사용
+       - 표준 출력 장치(모니터)로 출력하기 위해 사용
+       - 자바 가상 기계를 종료할 때 사용
+       - 쓰레기 수집기를 실행 요청할 때 사용
+Class - 클래스를 메모리로 로딩할 때 사용
+String - 문자열을 저장하고 여러 가지 정보를 얻을 때 사용
+Wrapper(Byte, Short, Character, Integer, Float, Double, Boolean, Long)
+       - 기본 타입의 데이터를 갖는 객체를 만들 때 사용
+       - 문자열을 기본 타입으로 변환할 때 사용
+       - 입력값 검사에 사용
+Main - 수학 함수를 이용할 때 사용
+
+여기서는 위 표에 있는 클래스르 중심으로 살펴보려고 한다.
+소개하는 클래스와 소속된 메소드들을 무작정 외우려고 하지 말고 API 도큐먼트에서 찾아보고, 어떤 기능을 제공하는지 내용을 읽고 이해하는 것이 더욱 중요하다.
+자바에서 제공하는 API는 무척 방대하기 때문에 이 책에서 모두 다룰 수 없다.
+API 도큐먼트를 잘 읽게 되면 책에서 다루지 않는 기능들도 알 수 있게 된다.
+API 도큐먼트를 잘 활용하는 것도 개발 능력 중 하나이다.
+
+<자바 API 도큐먼트>
+지금까지 자바 언어에 대해 학습했다면 이제부터는 자바에서 제공하는 API(Application Programming Interface)를 배울 차례이다.
+API는 라이브러리(library)라고 부르기도 하는데, 프로그램 개발에 자주 사용되는 클래스 및 인터페이스의 모음을 말한다.
+우리가 사용해왔던 String 클래스와 System 클래스도 모두 API에 속하는 클래스이다.
+
+방대한 자바 표준 API 중에서 우리가 원하는 API를 쉽게 찾아 이용할 수 있도록 도와주는 API 도큐먼트가 있다.
+API 도큐먼트는 HTML 페이지로 작성되어 있고, 다음 URL을 방문하면 버전별로 볼 수 있다.
+https://docs.oracle.com/en/java/javase/index.html
+
+JDK8과 JDK11이후 버전 두 도큐먼트의 레이아웃은 다르다.
+JDK8은 전체 자바 표준 API를 패키지별로 정리하여 보여주고 있지만, JDK11 이후 버전은 전체 자바 표준 API를 모듈별로 구분해서 정리하였기 때문에 첫 화면이 모듈 목록이다.
+______________________________________________________________________________________________________________________________________________________________________________________
+
+<API 도큐먼트에서 클래스 페이지 읽는 법>
+API 도큐먼트에서 클래스를 설명하는 페이지 구조는 JDK 버전과 상관없이 대동소이하다.
+Class String 페이지를 보면서 클래스 페이지를 읽는 방법을 설명해보겠다.
+01. 최상단의 SUMMARY|NESTED|FIELD|CONSTR|METHOD를 본다.
+    SUMMARY는 클래스 내에 선언된 멤버가 무엇이 있는지 알려준다.
+    링크가 있으면 해당 멤버가 있다는 뜻이고 링크가 없으면 해당 멤버가 없다는 뜻이다.
+    String 클래스는 NESTED에 링크가 없으므로 중첩클래스나 중첩 인터페이스가 없다는 뜻이다.
+    반면에 FIELD, CONSTR, METHOD는 모두 링크가 있으므로 public 또는 protected로 선언된 필드, 생성자, 메소드는 있다는 뜻이다.
+
+
+
+02. (!) 클래스의 선언부를 보자.
+       Module java.base
+       Package java.lang
+       Class String
+       java.lang.Object // 2
+            java.lang.String // 2
+       All Implemented Interfaces:
+       Serializable, CharSequence, Comparable<String>
+
+       public final class String  // 1
+       extends Object // 1
+       implements Serializable, Comparable<String>, CharSequence // 1
+    클래스가 final 또는 abstract 키워드가 있는지 확인한다.
+    String 클래스는 final 키워드가 있으므로 부모 클래스로는 사용할 수 없다.
+
+    그리고 extends 뒤에 언급된 부모 클래스가 무엇인지 본다.
+    String 클래스는 Object를 상속받고 있다.
+    상속 관계에 있는 모든 클래스를 보려면 (2)의 상속 계층도를 보면 된다.
+
+    마지막으로 implements 키워드 뒤에 언급된 인터페이스가 무엇인지 보자.
+    String 클래스는 Serializable, Comparable<String>, CharSequence와 같이 3개의 인터페이스를 구현하고 있다.
+
+03. 클래스에 선언된 필드 목록을 보자.
+    1번에서 설명한 SUMMARY : NESTED | FIELD | CONSTR | METHOD에서 FIELD 링크를 클릭하면 필드 목록으로 이동한다.
+    String 클래스에서 선언된 필드 목록은 다음과 같다.
+    
+    Modifier and Type              Field                       Description
+    static Comparator<String>      CASE_INSENSITIVE_ORDER      A Comparator thar orders String objects as by compareToIgnoreCase.
+    
+    Modifier and Type 컬럼에는 static 또는 protected 여부와 타입이 표시된다.
+    Field와 Description 컬럼에는 필드 이름이 굵은 글씨로 표시되어 있고, 아래에는 필드에 대한 간단한 설명이 있다.
+    필드 이름을 클릭하면 상세 설명 페이지로 이동한다.
+
+04. 클래스에 선언된 생성자 목록을 보자.
+    SUMMARY : NESTED | FIELD | CONSTR | METHOD에서 CONSTR 링크를 클릭하면 생성자 목록으로 이동한다.
+    String 클래스에서 선언된 생성자 목록은 다음과 같다.
+
+    Constructor      Description
+    String()         Initializes a newly created String object so that it represents an empty character sequence.
+    
+    String 클래스에는 매개 변수의 타입 또는 개수를 달리해서 10개가 넘는 생성자들이 오버로딩되어 있다.
+    모두 new 연산자로 호출해서 String 객체를 생성할 수 있다.
+    굵게 표시된 것이 생성자 이름이고, 옆에 간단한 설명이 있다.
+    생성자 이름을 클릭하면 상세 설명 페이지로 이동한다.
+
+05. 클래스에 선언된 메소드 목록을 보자.
+    SUMMARY : NESTED | FIELD | CONSTR | METHOD에서 METHOD 링크를 클릭하면 메소드 목록으로 이동한다.
+    String 클래스에서 선언된 메소드 목록은 다음과 같다.
+    
+    Modifier and Type       METHOD               Description
+    char                    charAt(int index)    Returns the char value at the specified index.
+    IntStream               chars()              Returns a stream of int zero-extending the char values from this sequence.
+
+    [All Methods] 탭은 전체 메소드 목록을 보여주고, [Static Methods] 탭은 정적 메소드 목록을 보여준다.
+    그리고 [Instance Methods] 탭은 인스턴스 메소드 목록을 보여준다.
+    Modifier and Type 컬럼에는 static 또는 protected 여부와 리턴 타입이 표시된다.
+    static이 없다면 Description 컬럼에는 메소드 이름과 매개 변수가 굵은 글씨로 표시되어 있고, 옆에는 메소드에 대한 간단한 설명이 있다.
+    메소드 이름을 클릭하면 상세 설명 페이지로 이동한다.
+______________________________________________________________________________________________________________________________________________________________________________________
+
+<Object 클래스>
+클래스 선언시 extends 키워드로 다른 클래스를 상속하지 않으면 암시적으로 java.lang.Object 클래스를 상속하게 된다.
+따라서 자바의 모든 클래스는 Object 클래스의 자식이거나 자손 클래스이다.
+Object는 자바의 최상위 부모 클래스에 해당한다.
+
+ API 도큐먼트에서 Object 클래스를 한번 찾아보자.
+ 
+ Module java.base
+ Pacakge java.lang
+ Class Object
+ java.lang.Object
+ public class Object
+
+SUMMARY를 보면 Object 클래스는 필드가 없고, 생성자와 메소드로 구성되어 있다.
+모든 클래스의 최상위 부모가 Object이므로 모든 클래스에서 Object의 메소드를 사용할 수 있다.
+
+* 객체비교(equal())
+다음은 Object 클래스의 equals() 메소드이다.
+
+public boolean equals(Object obj) { ... }
+equals() 메소드의 매개 타입은 Object인데, 이것은 모든 객체가 매개값으로 대입될 수 있음을 말한다.
+왜냐하면 모든 객체는 Object 타입으로 자동 타입 변환 될 수 있기 때문이다.
+Object 클래스의 equals() 메소드는 비교 연산자인 ==과 동일한 결과를 리턴한다.
+두 객체가 동일한 객체라면 true를 리턴하고 그렇지 않으면 false를 리턴한다.
+
+Object obj1 = new Object();
+Object obj2 = new Object();
+
+boolean result = obj1.equals(obj2);
+
+boolean result = (obj1 == obj2);
+
+자바에서는 두 객체를 동등 비교할 때 equals() 메소드를 흔히 사용한다.
+equals() 메소드는 두 객체를 비교해서 논리적으로 동등하면 true를 리턴하고, 그렇지 않으면 false를 리턴한다.
+논리적으로 동등하다는 것은 같은 객체이건 다른 객체이건 상관없이 객체가 저장하고 있는 데이터가 동일함을 뜻한다.
+
+예를 들어 String 객체의 equals() 메소드는 String 객체의 번지를 비교하는 것이 아니고, 문자열이 동일한지 조사해서 같다면 true를 리턴하고, 그렇지 않다면 false를 리턴한다.
+이것이 가능한 이유는 String 클래스가 Object의 equals() 메소드를 재정의(오버라이딩)해서 번지 비교가 아닌 문자열 비교로 변경했기 때문이다.
+일반적으로 Object의 equals() 메소드는 직접 사용되지 않고 하위 클래스에서 재정의하여 논리적으로 동등 비교할 때 이용된다.
+
+equals() 메소드를 재정의할 때에는 매개값(비교 객체)이 기준 객체와 동일한 타입의 객체인지 먼저 확인해야 한다.
+Object 타입의 매개 변수는 모든 객체가 매개값으로 제공될 수 있기 때문에 instanceof 연산자로 기준 객체와 동일한 타입인지 제일 먼저 확인해야 한다.
+만약 비교 객체가 다른 타입이라면 equals() 메소드는 false를 리턴해야 한다.
+비교 객체가 동일한 타입이라면 기준 객체 타입으로 강제 타입 변환해서 필드값이 동일한지 검사하면 된다.
+필드값이 모두 동일하다면 true를 리턴하고 그렇지 않으면 false를 리턴하도록 했다.
+
+다음 예제는 Member 클래스에서 equals() 메소드를 재정의한 것이다.
+Member 타입이면서 id필드값이 같을 경우는 true를 리턴하고, 그 이외의 경우는 false를 리턴하도록 했다.
+( Member.java / MemberExample.java / package sec01.exam01; )
