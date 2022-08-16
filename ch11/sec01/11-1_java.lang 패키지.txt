@@ -424,3 +424,103 @@ String str = new String(bytes, String charsetName);
 다음 예제에서는 문자열을 바이트 배열로 인코딩하고 길이를 출력해보았다.
 그리고 다시 String 생성자를 이용해서 문자열로 디코딩해보았다.
 ( StringGetBytesExample.java / package ch11.sec01.exam14; )
+
+ * 문자열 찾기(indexOf())
+ indexOf() 메소드는 매개값으로 주어진 문자열이 포함되어 있지 않으면 -1을 리턴한다.
+ 만약 주어진 문자열이 포함되어 있지 않으면 -1을 리턴한다.
+ 다음 코드를 보면서 이해해보자.
+
+ String subject = "자바 프로그래밍";
+ int index = subject.indefOf("프로그래밍");
+
+ index 변수에는 3이 저장되는데, "자바 프로그래밍"에서 "프로그래밍" 문자열의 인덱스 위치가 3이기 때문이다.
+ indexOf() 메소드는 if문의 조건식에서 특정 문자열이 포함되어 있는지 여부에 따라 실행 코드를 달리할 때 자주 사용된다.
+ -1 값을 리턴하면 특정 문자열이 포함되어 있지 않다는 뜻이다.
+
+ if( 문자열.indexOf("찾는 문자열") !=-1 ){
+    //포함되어 있는 경우
+ } else{
+    //포함되어 있지 않은 경우
+ }
+
+ ( StringIndexOfExample.java / pacakage ch11.sec01.exam15; )
+
+ * 문자열 길이(length())
+ length() 메소드는 문자열의 길이(문자의 수)를 리턴한다.
+다음 코드를 보면서 이해해보자.
+
+String subject = "자바 프로그래밍";
+int length = subject.length();
+
+length 변수에는 8이 저장된다.
+subject 객체의 문자열 길이는 공백을 포함해서 8개이기 때문이다.
+( StringLengthExample.java / package ch11.sec01.exam16; )
+
+ * 문자열 대치(replace())
+ replace() 메소드는 첫 번째 매개값인 문자열을 찾아 두 번째 매개값인 문자열로 대치한 새로운 문자열을 생성하고 리턴한다.
+ 다음 코드를 보면서 이해해보자.
+ String oldStr = "자바 프로그래밍";
+ String newStr = oldstr.replace("자바", "JAVA");
+
+ String 객체의 문자열은 변경이 불가능한 특성을 갖기 때문에 replace() 메소드가 리턴하는 문자열은 원래 문자열의 수정본이 아니라 완전히 새로운 문자열이다.
+ 따라서 newStr 변수는 다음 그림과 같이 새로 생성된 "JAVA 프로그래밍" 문자열을 참조한다.
+( StringReplaceExample.java / package ch11.sec01.exam17; )
+
+ * 문자열 잘라내기(substring())
+ substring() 메소드는 주어진 인덱스에서 문자열을 추출한다.
+ substring() 메소드는 매개값의 수에 따라 두 가지 형태로 사용된다.
+ substring(int beginIndex, int endIndex)는 주어진 시작과 끝 인덱스 사이의 문자열을 추출하고, substring(int beginIndex)는 주어진 인덱스부터 끝까지 문자열을 추출한다.
+
+ String ssn = "880815-1234567";
+ String firstNum = ssn.substring(0, 6);
+ String secondNum = ssn.substring(7);
+
+ 상기 코드에서 firstNum 변수값은 "880815"이고, secondNum 변수값은 "1234567"이다.
+ ssn.substring(0, 6)은 인덱스 0(포함)~6(제외) 사이의 문자열을 추출하는 것이고, substring(7)은 인덱스 7부터 끝까지 문자열을 추출한다.
+( StringSubstringExample.java / ch11.sec01.exam18; )
+
+ * 알파벳 소·대문자 변경(toUpperCase(), toLowerCase())
+ toLowerCase() 메소드는 문자열을 모두 소문자로 바꾼 새로운 문자열을 생성한 후 리턴한다.
+ 반대로 toUpperCase() 메소드는 문자열을 모두 대문자로 바꾼 새로운 문자열을 생성한 후 리턴한다.
+ 다음 코드를 보면서 이해해보자.
+
+ String original = "Java Programming";
+ String lowerCase = original.toLowerCase();
+ String upperCase = original.toUpperCase();
+
+ lowerCase 변수는 새로 생성된 "java progamming" 문자열을 참조하고, upperCase 변수는 새로 생성된 "JAVA PROGRAMMING" 문자열을 참조한다.
+ 이때 원래 original 변수의 "Java Progamming" 문자열이 변경된 것은 아니다.
+ toLowerCase()와 toUpperCase() 메소드는 영어로 된 두 문자열을 대소문자와 관계없이 비교할 때 주로 이용된다.
+ 다음 예제에서는 두 문자열이 대소문자가 다를 경우 어떻게 비교하는지를 보여준다.
+ equals() 메소드를 사용하려면 사전에 toLowerCase()와 toUpperCase()로 대소문자를 맞추어야 하지만, equalsIgnoreCase() 메소드를 사용하면 이 작업이 생략된다.
+( StringToLowerUpperCaseExample.java / ch11.sec01.exam19; )
+
+ * 문자뎔 앞뒤 공백 잘라내기(trim())
+ trim() 메소드는 문자열의 앞뒤 공백을 제거한 새로운 문자열을 생성하고 리턴한다.
+ 다음 코드를 보면 newStr 변수는 앞뒤 공백이 제거된 새로 생성된 "자바 프로그래밍" 문자열을 참조한다.
+ trim() 메소드는 앞뒤의 공백만 제거할 뿐 중간의 공백은 제거하지 않는다.
+ 
+ String oldStr = "    자바 프로그래밍    ";
+ String newStr = oldStr.trim();
+ 
+ trim() 메소드를 사용한다고 해서 원래 문자열의 공백이 제거되는 것은 아니다.
+( StringTrimExample.java / package ch11.sec01.exam20; )
+
+ * 문자열 변환(valueOf())
+ valueOf() 메소드는 기본 타입의 값을 문자열로 변환하는 기능을 가지고 있다.
+ String 클래스에는 매개 변수의 타입별로 valueOf() 메소드가 다음과 같이 오버로딩되어 있다.
+
+ static String valueOf(boolean b);
+ static String valueOf(char c);
+ static String valueOf(int i);
+ static String valueOf(long l);
+ static String valueOf(double d);
+ static String valueOf(float f);
+( StringValueOfExample.java / package ch11.sec01.exam21; )
+______________________________________________________________________________________________________________________________________________________________________________________
+
+<Wrapper(포장) 클래스>
+자바는 기본 타입(byte, char, short, int, long, float, double, boolean)의 값을 갖는 객체를 생성할 수 있다.
+이런 객체를 포장(Wrapper) 객체라고 하는데, 그 이유는 기본 타입의 값을 내부에 두고 포장하기 때문이다.
+포장 객체의 특징은 포장하고 있는 기본 타입 값은 외부에서 변경할 수 없다는 점이다.
+만약 내부의 값을 변경하고 싶다면 새로운 포장 객체를 만들어야 한다.
